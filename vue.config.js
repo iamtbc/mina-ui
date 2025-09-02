@@ -2,8 +2,19 @@ const path = require('path');
 const rootPath = path.resolve(__dirname, './src/');
 
 module.exports = {
+  configureWebpack: {
+    externals: {
+      vue: {
+        commonjs: 'vue',
+        commonjs2: 'vue',
+        amd: 'vue',
+        root: 'Vue'
+      }
+    }
+  },
   chainWebpack: config => {
     config.resolve.alias.set('@', rootPath);
+
     const svgRule = config.module.rule('svg');
     svgRule.uses.clear();
     svgRule
